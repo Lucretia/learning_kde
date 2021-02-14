@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(helloworld)
+project(mainwindow)
 
 set(QT_MIN_VERSION "5.3.0")
 set(KF5_MIN_VERSION "5.2.0")
@@ -23,18 +23,22 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons      # KAboutData
     I18n            # KLocalizedString
-    WidgetsAddons   # KMessageBox
+    XmlGui          # KXmlGuiWindow
+    TextWidgets     # KTextEdit
 )
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-set(helloworLd_SRCS main.cpp)
-add_executable(helloworld ${helloworLd_SRCS})
-target_link_libraries(helloworld
+set(mainwindow_SRCS main.cpp mainwindow.cpp)
+
+add_executable(mainwindow ${mainwindow_SRCS})
+
+target_link_libraries(mainwindow
     Qt5::Widgets
     KF5::CoreAddons
     KF5::I18n
-    KF5::WidgetsAddons
+    KF5::XmlGui
+    KF5::TextWidgets
 )
 
-install(TARGETS helloworld ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS mainwindow ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

@@ -3,21 +3,22 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include "mainwindow.hpp"
 
 int main (int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    KLocalizedString::setApplicationDomain("tutorials");
+    KLocalizedString::setApplicationDomain("mainwindow");
 
     KAboutData aboutData(
         // Internal program name.
-        QStringLiteral("tutorial1"),
+        QStringLiteral("mainwindow"),
         // Dispplay name.
-        i18n("Tutorial 1"),
+        i18n("mainwindow"),
         // Program's version string.
         QStringLiteral("1.0"),
         // Short description.
-        i18n("Displays a KMessageBox popup"),
+        i18n("A simple KTextArea"),
         // Licence.
         KAboutLicense::GPL,
         // Copyright.
@@ -44,16 +45,9 @@ int main (int argc, char *argv[])
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    KGuiItem yesButton(i18n("Hello"), QString(),
-        i18n("This is a tooltip"),
-        i18n("This is a WhatsThis help text."));
+    MainWindow *window = new MainWindow();
 
-    KGuiItem noButton(i18n("Deny"), QString(),
-        i18n("Deny tooltip"),
-        i18n("Deny WhatsThis help text."));
+    window->show();
 
-    return KMessageBox::questionYesNo(nullptr,
-        i18n("Hello, world!"),
-        i18n("Hello"),
-        yesButton, noButton) == KMessageBox::Yes ? EXIT_SUCCESS : EXIT_FAILURE;
+    return app.exec();
 }
