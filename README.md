@@ -7,3 +7,7 @@ Tutorials followed are from the [KDE Developer](https://develop.kde.org/docs/get
 ## Copyright
 
 Copyright (C) 2020, Luke A. Guest & KDE Team
+
+## Licence
+
+GPL
