@@ -8,13 +8,13 @@
 int main (int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    KLocalizedString::setApplicationDomain("mainwindow");
+    KLocalizedString::setApplicationDomain("texteditor");
 
     KAboutData aboutData(
         // Internal program name.
-        QStringLiteral("mainwindow"),
+        QStringLiteral("texteditor"),
         // Dispplay name.
-        i18n("mainwindow"),
+        i18n("texteditor"),
         // Program's version string.
         QStringLiteral("1.0"),
         // Short description.

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(mainwindow)
+project(texteditor)
 
 set(QT_MIN_VERSION "5.3.0")
 set(KF5_MIN_VERSION "5.2.0")
@@ -25,20 +25,23 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     I18n            # KLocalizedString
     XmlGui          # KXmlGuiWindow
     TextWidgets     # KTextEdit
+    ConfigWidgets   # KStandardActions
 )
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-set(mainwindow_SRCS main.cpp mainwindow.cpp)
+set(texteditor_SRCS main.cpp mainwindow.cpp)
 
-add_executable(mainwindow ${mainwindow_SRCS})
+add_executable(texteditor ${texteditor_SRCS})
 
-target_link_libraries(mainwindow
+target_link_libraries(texteditor
     Qt5::Widgets
     KF5::CoreAddons
     KF5::I18n
     KF5::XmlGui
     KF5::TextWidgets
+    KF5::ConfigWidgets
 )
 
-install(TARGETS mainwindow ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS texteditor ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES texteditorui.rc DESTINATION ${KDE_INSTALL_KXML_GUI5DIR}/texteditor)
