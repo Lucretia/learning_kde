@@ -22,6 +22,20 @@ MainWindow::MainWindow(QWidget *parent) : KXmlGuiWindow(parent), filename(QStrin
     setupActions();
 }
 
+void MainWindow::openFileFromUrl(const QUrl &inputFilename)
+{
+    if (!inputFilename.isEmpty())
+    {
+        KIO::Job *job = KIO::storedGet(inputFilename);
+
+        filename = inputFilename.toLocalFile();
+
+        connect(job, &KIO::Job::result, this, &MainWindow::downloadFinished);
+
+        job->exec();
+    }
+}
+
 void MainWindow::setupActions()
 {
     QAction *clearAction = new QAction(this);

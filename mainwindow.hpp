@@ -12,6 +12,7 @@ class MainWindow : public KXmlGuiWindow
 
     public:
         explicit MainWindow(QWidget *parent = nullptr);
+        void openFileFromUrl(const QUrl &inputFilename);
 
     private:
         void setupActions();

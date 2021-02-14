@@ -1,5 +1,8 @@
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QUrl>
+#include <QDir>
+
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -42,12 +45,18 @@ int main (int argc, char *argv[])
     QCommandLineParser parser;
 
     aboutData.setupCommandLine(&parser);
+    parser.addPositionalArgument(QStringLiteral("file"), i18n("Document to open"));
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
     MainWindow *window = new MainWindow();
 
     window->show();
+
+    if (parser.positionalArguments().count() > 0)
+    {
+        window->openFileFromUrl(QUrl::fromUserInput(parser.positionalArguments().at(0), QDir::currentPath()));
+    }
 
     return app.exec();
 }
