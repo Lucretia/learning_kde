@@ -48,8 +48,12 @@ int main (int argc, char *argv[])
         i18n("This is a tooltip"),
         i18n("This is a WhatsThis help text."));
 
+    KGuiItem noButton(i18n("Deny"), QString(),
+        i18n("Deny tooltip"),
+        i18n("Deny WhatsThis help text."));
+
     return KMessageBox::questionYesNo(nullptr,
         i18n("Hello, world!"),
         i18n("Hello"),
-        yesButton) == KMessageBox::Yes ? EXIT_SUCCESS : EXIT_FAILURE;
+        yesButton, noButton) == KMessageBox::Yes ? EXIT_SUCCESS : EXIT_FAILURE;
 }
